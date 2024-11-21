@@ -343,8 +343,9 @@ class ScatterplotD3 {
             
             return 0;
         })
-        
+        ;
     }
+
 
     /**
      * Update each axis of the visualization.
@@ -519,7 +520,7 @@ class ScatterplotD3 {
                     
                     return 0;
                 })
-                .style("opacity", this.defaultOpacity);
+                .style("opacity", this.defaultOpacity)                
                 ;
                 this.updateDots(itemG, xAttribute, yAttribute, categorical);
             },
@@ -530,6 +531,7 @@ class ScatterplotD3 {
                 exit.remove()
                 ;
             }
+            
         )
         ;
         

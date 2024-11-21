@@ -372,11 +372,6 @@ class ParallelPlotD3 {
         .selectAll(".handle")
         .attr("display", "none")
         ;
-
-        this.lineSvg.selectAll(".line")
-        .attr("stroke", "black")
-        .style("opacity", this.defaultOpacity)
-        ;
     }
 
     /**
@@ -392,7 +387,12 @@ class ParallelPlotD3 {
         .selectAll(".handle")
         .attr("display", "none")
         ;
+    }
 
+    /**
+     * Resets the selection by coloring all lines black
+     */
+    resetSelection = () => {
         this.lineSvg.selectAll(".line")
         .attr("stroke", "black")
         .style("opacity", this.defaultOpacity)
@@ -405,10 +405,6 @@ class ParallelPlotD3 {
     cancelAllBrushes = () => {
         this.cancelLowerBrush();
         this.cancelUpperBrush();
-        this.lineSvg.selectAll(".line")
-        .attr("stroke", "black")
-        .style("opacity", this.defaultOpacity)
-        ;
     }
 
     /**
