@@ -1,0 +1,59 @@
+.controlBarLineContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    resize: both; /* Allow resizing both horizontally and vertically */
+    overflow: auto; /* Add scrollbars if needed */
+}
+
+/* Title spans the top row, across all three columns */
+.controlBarLineTitle {
+    text-align: center;
+    padding: 5px;
+    font-size: 0.6em;
+}
+
+/* X Axis control */
+.controlBarLineUpperAxis {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+/* Y Axis control */
+.controlBarLineLowerAxis {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+/* Swap button */
+.controlBarLineSwap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.controlBarLineInvertUpper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.controlBarLineInvertLower {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.controlBarLineSwap button {
+    width: 100%; /* Customize to preferred size */
+    height: 50%; /* Customize to preferred size */
+    cursor: pointer;
+    /* text in the middle */
+}

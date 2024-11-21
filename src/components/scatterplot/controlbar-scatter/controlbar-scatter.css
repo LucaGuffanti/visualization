@@ -1,0 +1,50 @@
+.controlBarScatterContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    resize: both; /* Allow resizing both horizontally and vertically */
+    overflow: auto; /* Add scrollbars when necessary */
+}
+
+/* Title spans the top row, across all three columns */
+.controlBarScatterTitle {
+    text-align: center;
+    padding: 5px;
+    font-size: 0.6em;
+}
+
+/* X Axis control */
+.controlBarScatterXAxis {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+/* Y Axis control */
+.controlBarScatterYAxis {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+/* Swap button */
+.controlBarScatterSwap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.controlBarScatterSwap button {
+    width: 100%; /* Customize to preferred size */
+    height: 50%; /* Customize to preferred size */
+    cursor: pointer;
+    /* text in the middle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

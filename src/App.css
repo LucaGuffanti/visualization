@@ -1,0 +1,59 @@
+html {
+  height: 100%;
+}
+
+body {
+  box-sizing: border-box;
+  height: 100%;
+  margin: 10px;
+}
+
+#root {
+  height: 100%;
+}
+
+.App {
+  text-align: center;
+  height: 100%;
+}
+
+.left-side{
+  /*This must be on the left half of the screen*/
+
+  float: left;
+  height: 100%;
+  width: 50%;
+}
+
+.right-side{
+  /*This must be on the right half of the screen*/
+  float: right;
+
+
+  height: 100%;
+  width: 50%;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 100%;
+}
+
+.section-controlBar {
+  height: 10%; /* Adjust the height to create more white space on top */
+  width: 100%;
+}
+
+.section-scatterplot {
+  height: 80%; /* Adjust the height to fill the remaining space */
+  width: 100%;
+}
+
+.section-parallelplot {
+  height: 80%; /* Adjust the height to fill the remaining space */
+  width: 100%;
+}
