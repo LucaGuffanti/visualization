@@ -45,18 +45,18 @@ export const SeasonColor = {
 };
 
 export const HolidayColor = {
-    "Holiday": "#f4a582",
-    "No Holiday": "#0571b0"
+    "Holiday": "#fde725",
+    "No Holiday": "#440154"
 };
 
 export const HolidayResize = {
-    "Holiday": 1.5,
+    "Holiday": 1.7,
     "No Holiday": 1
 }
 
 export const FunctioningDayColor = {
-    "No": "#f4a582",
-    "Yes": "#0571b0"
+    "No": "#ff8000",
+    "Yes": "#219b9d"
 };
 
 export const categoricalValues = {
@@ -66,11 +66,11 @@ export const categoricalValues = {
 }
 
 export const FunctioningDayResize = {
-    "No": 1.5,
+    "No": 1.7,
     "Yes": 1
 }
 
 export const basicScatterOpacity = 0.2;
-export const importantScatterOpacity = 0.7;
+export const importantScatterOpacity = 1;
 export const transitionTime = 2000;
 

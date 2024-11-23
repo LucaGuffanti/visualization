@@ -219,6 +219,7 @@ class ParallelPlotD3 {
         if (this.upperBrushSelection[0] === this.upperBrushSelection[1]) {
             this.upperBrushActive = false;
             this.cancelUpperBrush();
+            this.resetSelection();
         }
 
         this.manageCoupledSelection();
@@ -237,6 +238,7 @@ class ParallelPlotD3 {
         if (this.lowerBrushSelection[0] === this.lowerBrushSelection[1]) {
             this.lowerBrushActive = false;
             this.cancelLowerBrush();
+            this.resetSelection();
         }
 
         this.manageCoupledSelection();
@@ -254,6 +256,7 @@ class ParallelPlotD3 {
         let x1 = 0;
         let y0 = 0;
         let y1 = 0;
+        let colorScaleLowerDomain = true;
 
         // Execute only if at least one brush is active at a time
         if (this.upperBrushActive || this.lowerBrushActive) {
@@ -264,11 +267,18 @@ class ParallelPlotD3 {
                 x1 = this.lowerScale.invert(this.lowerBrushSelection[1]);
                 y0 = this.upperScale.invert(this.upperBrushSelection[0]);
                 y1 = this.upperScale.invert(this.upperBrushSelection[1]);
+
+                if (Math.abs(x0 - x1)/Math.abs((this.lowerScale.domain()[1]-this.lowerScale.domain()[0])) < Math.abs(y0 - y1)/Math.abs((this.upperScale.domain()[1]-this.upperScale.domain()[0]))) {
+                    colorScaleLowerDomain = true;
+                } else {
+                    colorScaleLowerDomain = false;
+                }
             }
             // If only the upper brush is active, then the selection is the range of the upper brush,
             // intersected with the whole domain of the lower brush
             else if (this.upperBrushActive) {
                 this.enableUpperBrush();
+                colorScaleLowerDomain = false;
                 x0 = this.lowerScale.domain()[0];
                 x1 = this.lowerScale.domain()[1];
                 y0 = this.upperScale.invert(this.upperBrushSelection[0]);
@@ -284,11 +294,19 @@ class ParallelPlotD3 {
                 y1 = this.upperScale.domain()[1];
             }
             
-            // To color the lines, introduce a color scale that will color the lines based on their position on the LOWER axis
-            const colorScale = d3.scaleLinear()
-            .domain(generateLinSpace(x0, x1, parallelPlotColor.length))
-            .range(parallelPlotColor)
-            ;
+            let colorScale;
+            // To color the lines, introduce a color scale that will color the lines based on their position on the active axis
+            if (colorScaleLowerDomain) {
+                colorScale = d3.scaleLinear()
+                .domain(generateLinSpace(x0, x1, parallelPlotColor.length))
+                .range(parallelPlotColor)
+                ;
+            } else {
+                colorScale = d3.scaleLinear()
+                .domain(generateLinSpace(y0, y1, parallelPlotColor.length))
+                .range(parallelPlotColor)
+                ;
+            }
             
             // Then, based on the selection, the lines are colored
             this.lineSvg.selectAll(".line")
@@ -296,7 +314,11 @@ class ParallelPlotD3 {
                 const InRangeLower = between(d[this.currentLowerAxis], x0, x1);
                 const InRangeUpper = between(d[this.currentUpperAxis], y0, y1);
                 if (InRangeLower && InRangeUpper) {
-                    return colorScale(d[this.currentLowerAxis]);
+                    if (colorScaleLowerDomain) {
+                        return colorScale(d[this.currentLowerAxis]);
+                    } else {
+                        return colorScale(d[this.currentUpperAxis]);
+                    }
                 }
                 return "black";
             })

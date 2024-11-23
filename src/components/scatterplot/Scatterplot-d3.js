@@ -1,5 +1,5 @@
 import * as d3 from 'd3'
-import { between, SeasonColor, FunctioningDayColor, HolidayColor, basicScatterOpacity, FunctioningDayResize, HolidayResize, categoricalValues, transitionTime} from '../util';
+import { between, SeasonColor, FunctioningDayColor, HolidayColor, basicScatterOpacity, FunctioningDayResize, HolidayResize, categoricalValues, transitionTime, importantScatterOpacity} from '../util';
 
 class ScatterplotD3 {
     /**
@@ -40,7 +40,7 @@ class ScatterplotD3 {
     /**
      * Opacity of the dots when brushed
      */
-    brushedOpacity=0.6;
+    brushedOpacity=importantScatterOpacity;
 
     /**
      * Duration of the animations
@@ -462,7 +462,18 @@ class ScatterplotD3 {
                 .attr("transform", (d, i) => "translate(" + (i * 100) + ",0)");
                 
                 itemG.append("circle")
-                .attr("r", 5)
+                .attr("r", (d) => {
+                    if (categorical === 'Seasons') {
+                        return 5;
+                    }
+                    else if (categorical === 'FunctioningDay') {
+                        return 5 * FunctioningDayResize[d];
+                    }
+                    else if (categorical === 'Holiday') {
+                        return 5 * HolidayResize[d];
+                    }
+                    return 0;
+                })
                 .attr("fill", (d) => {
                     if (categorical === 'Seasons') {
                         return SeasonColor[d];
