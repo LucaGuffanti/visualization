@@ -36,7 +36,7 @@ const ScatterplotContainer = () => {
         return { width: undefined, height: undefined };
     }
     
-    // did mount called once the component did mount
+    // Used to create the scatterplot
     useEffect(()=>{
         const scatterplotD3 = new ScatterplotD3(divContainerRef.current);
         scatterplotD3.create({size:getCharSize()});
@@ -45,9 +45,9 @@ const ScatterplotContainer = () => {
             const scatterplotD3 = scatterplotD3Ref.current;
             scatterplotD3.clear()
         }
-    },[]);// if empty array, useEffect is called after the component did mount (has been created)
+    },[]);
     
-    // did update, called each time dependencies change, dispatch remain stable over component cycles
+    // Used to catch the update of the data or change in axes
     useEffect(()=>{
         const scatterplotD3 = scatterplotD3Ref.current;
         
@@ -71,9 +71,9 @@ const ScatterplotContainer = () => {
             yLabel, 
             categorical, 
             controllerMethods);
-    },[data, xAttribute, yAttribute, dispatch, xLabel, yLabel]);// if dependencies, useEffect is called after each data update, in our case only matrixData changes.
+    },[data, xAttribute, yAttribute, dispatch, xLabel, yLabel]);
 
-
+    // Used to update the colors of the dots based on the categorical attribute of choice
     useEffect(()=>{
         const scatterplotD3 = scatterplotD3Ref.current;
         
@@ -84,6 +84,7 @@ const ScatterplotContainer = () => {
             categorical);
     },[categorical, dispatch]);
 
+    // Used to update the selection of the dots based on the parallel plot brushed selection
     useEffect(()=>{
 
         const scatterplotD3 = scatterplotD3Ref.current;

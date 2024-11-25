@@ -41,18 +41,18 @@ function ParallelPlotContainer(){
         return {width:width,height:height};
     }
 
-    // did mount called once the component did mount
+    // Used to create the parallel plot
     useEffect(()=>{
         const parallelplotD3 = new ParallelPlotD3 (divContainerRef.current);
         parallelplotD3.create({size:getCharSize()});
         parallelplotD3Ref.current = parallelplotD3;
         return ()=>{
-            // did unmout, the return function is called once the component did unmount (removed for the screen)
             const parallelplotD3 = parallelplotD3Ref.current;
             parallelplotD3.clear()
         }
-    },[]);// if empty array, useEffect is called after the component did mount (has been created)
+    },[]);
 
+    // Used to catch a change in the data or axes
     useEffect(()=>{
         const parallelplotD3 = parallelplotD3Ref.current;
 
@@ -83,6 +83,7 @@ function ParallelPlotContainer(){
             controllerMethods);
     },[data, parallelplotState, dispatch]);// if dependencies, useEffect is called after each data update, in our case only data changes.
 
+    // Used to update the selection in the parallel plot when the scatterplot is brushed
     useEffect(()=>{
         const parallelplotD3 = parallelplotD3Ref.current;
         if (xScatterplotSelection !== null) {

@@ -7,7 +7,6 @@
     height: 100%;
 }
 
-/* Title spans the top row, across all three columns */
 .controlBarScatterTitle {
     text-align: center;
     padding: 5px;
@@ -30,14 +29,13 @@
     padding: 10px;
 }
 
-/* Swap button */
-.controlBarScatterSwap {
+.controlBarScatterColor {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.controlBarScatterSwap button {
+.controlBarScatterColor button {
     width: 100%; /* Customize to preferred size */
     height: 50%; /* Customize to preferred size */
     cursor: pointer;

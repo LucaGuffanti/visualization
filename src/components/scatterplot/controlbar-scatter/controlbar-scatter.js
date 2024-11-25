@@ -59,7 +59,7 @@ function ControlBarScatter() {
                     {filteredYHeaders.map(h => <option value={h} key={h}>{h}</option>)}
                     </select>
                 </div>
-                <div className="controlBarScatterSwap">
+                <div className="controlBarScatterColor">
                     <label> Color Encoding:</label>
                     <select value={currentCategorical} onChange={handleColorChange}>
                     <option value={currentCategorical} key={currentCategorical}>{catToLabelMap[currentCategorical]}</option>

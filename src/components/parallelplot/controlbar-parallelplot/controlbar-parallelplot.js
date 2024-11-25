@@ -26,27 +26,16 @@ function ControlBarParallelPlot() {
     const handleLowerAxisChange = (e) => {        
         let val;
         let label;
-        if (e.target.value === 'index') {
-            val = 'index';
-            label = 'index';
-        }
-        else {
-            val = e.target.value;
-            label = e.target.value;
-        }
+        
+        val = e.target.value;
+        label = e.target.value;
         dispatch(updateAxis({lowerAxis: val, upperAxis: currentUpperAxis, lowerAxisLabel: label, upperAxisLabel: currentUpperAxisLabel}));
     };
     const handleUpperAxisChange = (e) => {        
         let val;
         let label
-        if (e === 'index') {
-            val = 'index';
-            label = 'index';
-        }
-        else {
-            val = e.target.value;
-            label = e.target.value;
-        }
+        val = e.target.value;
+        label = e.target.value;
         dispatch(updateAxis({lowerAxis: currentLowerAxis, upperAxis: val, lowerAxisLabel: currentLowerAxisLabel, upperAxisLabel: label}));
     };
     const swapAxis = (e) => {
