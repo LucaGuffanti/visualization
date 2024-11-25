@@ -26,7 +26,7 @@ function ControlBarParallelPlot() {
     const handleLowerAxisChange = (e) => {        
         let val;
         let label;
-        
+
         val = e.target.value;
         label = e.target.value;
         dispatch(updateAxis({lowerAxis: val, upperAxis: currentUpperAxis, lowerAxisLabel: label, upperAxisLabel: currentUpperAxisLabel}));
@@ -65,9 +65,6 @@ function ControlBarParallelPlot() {
                     <option value={currentLowerAxis} key={currentLowerAxis}>{currentLowerAxisLabel}</option>
                     {filteredLowerHeaders.map(h => <option value={h} key={h}>{h}</option>)}
                     </select>
-                </div>
-                <div className="controlBarLineSwap">
-                    <button onClick={swapAxis}> Swap</button>
                 </div>
                 <div className="controlBarLineInvertUpper"> 
                     <button onClick={invertUpper}> Invert Upper</button>
